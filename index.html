@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div id="clock-box">
-                <span id="clock">577 days 0 hours 0 minutes 0 seconds</span> <!-- Change to "6940 days..." if needed -->
+                <span id="clock"></span>
             </div>
             <canvas id="canvas" width="1100" height="680"></canvas>
         </div>
@@ -178,6 +178,28 @@
 
         runAsync().start();
     })();
+    </script>
+
+    <!-- Clock script -->
+    <script>
+        // Change this to your special date (example: Jan 1, 2023)
+        var startDate = new Date("2023-01-01 00:00:00");
+
+        function updateClock() {
+            var now = new Date();
+            var diff = now - startDate;
+
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            var minutes = Math.floor((diff / (1000 * 60)) % 60);
+            var seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("clock").innerHTML =
+                days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds";
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // run immediately
     </script>
 </body>
 </html>
